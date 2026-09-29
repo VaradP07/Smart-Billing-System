@@ -1,0 +1,228 @@
+# ============================================================
+# Smart Billing System - Python / Tkinter
+# ============================================================
+
+# -------------------------
+# Python cache / bytecode
+# -------------------------
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# -------------------------
+# Virtual environments
+# -------------------------
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# -------------------------
+# Python packaging
+# -------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+MANIFEST
+*.manifest
+*.spec
+
+# -------------------------
+# Testing / coverage
+# -------------------------
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.cache/
+hypothesis/
+.pyre/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# -------------------------
+# IDE - VS Code
+# -------------------------
+.vscode/
+*.code-workspace
+
+# -------------------------
+# IDE - PyCharm / IntelliJ
+# -------------------------
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# -------------------------
+# Jupyter
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# Windows
+# -------------------------
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# -------------------------
+# macOS
+# -------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# -------------------------
+# Linux
+# -------------------------
+*~
+.directory
+
+# -------------------------
+# Environment variables
+# -------------------------
+.env
+.env.*
+!.env.example
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/
+
+# -------------------------
+# Temporary files
+# -------------------------
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.orig
+*.old
+
+# ============================================================
+# Smart Billing System generated/runtime files
+# ============================================================
+
+# -------------------------
+# SQLite / local databases
+# -------------------------
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.sqlite-journal
+
+# Your application database
+data/pos_database.sqlite
+
+# -------------------------
+# Generated invoices
+# -------------------------
+invoices/*.pdf
+
+# -------------------------
+# Generated barcode / QR images
+# -------------------------
+barcodes/*.png
+barcodes/*.jpg
+barcodes/*.jpeg
+
+# -------------------------
+# Application backups
+# -------------------------
+data/backups/
+backups/
+*.backup
+*.bak.db
+*.sqlite.bak
+
+# -------------------------
+# Exported data
+# -------------------------
+*.csv
+
+# If you want to keep a sample CSV,
+# use an exception such as:
+# !sample_data/*.csv
+
+# -------------------------
+# Runtime generated data
+# -------------------------
+data/*.sqlite
+data/*.sqlite3
+data/*.db
+
+# -------------------------
+# Generated reports
+# -------------------------
+reports/generated/
+reports/output/
+*.xlsx
+*.xls
+
+# ============================================================
+# Build / executable files
+# ============================================================
+
+# PyInstaller
+*.manifest
+*.spec
+*.exe
+
+# Nuitka
+*.build/
+*.dist/
+
+# cx_Freeze
+*.msi
+
+# ============================================================
+# Local configuration
+# ============================================================
+
+config.local.*
+settings.local.*
+local_settings.py
+
+# ============================================================
+# Secrets / credentials
+# ============================================================
+
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Firebase / cloud credentials if added later
+serviceAccountKey.json
+firebase-adminsdk-*.json
+
+# ============================================================
+# Generated images / temporary exports
+# ============================================================
+
+screenshots/generated/
+exports/
+temp/
+tmp/

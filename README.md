@@ -1,325 +1,463 @@
-# Smart Retail Billing System
+Smart Billing System
 
-A comprehensive, advanced GUI-based retail billing and inventory management system built with Python. Completely offline with local data storage (JSON/CSV based).
+A desktop-based Smart Retail Billing System built with Python and Tkinter for managing products, billing, inventory, customers, users, reports, and invoice generation.
 
-## 🎯 Features
+The application is designed for small retail businesses and provides a local, offline-first workflow with SQLite database storage.
 
-### Core Features
+✨ Features
 
-#### 1. **Product Management**
-- Add/edit/delete products
-- Auto-generated unique product IDs
-- Barcode generation (Code128 & QR codes)
-- Product categories and descriptions
-- Cost and selling price management
-- Low stock alerts (customizable threshold)
+🔐 Authentication & User Management
 
-#### 2. **Barcode System**
-- Auto-generate barcodes for each product
-- QR code generation
-- Barcode image storage locally
-- Search products by barcode
-- Scan barcode via webcam during billing (requires OpenCV & pyzbar)
-- Alternatively select a saved barcode image if camera is unavailable
-- Easy product lookup during billing
+Secure login system
 
-#### 3. **Billing System**
-- Create professional invoices
-- Add products by:
-  - Product name search or barcode scan (use the "Scan" button to read via webcam)
-  - Manual quantity entry
-  - Discount per item or invoice-wide
-- GST calculation (customizable percentage)
-- Payment modes: Cash, UPI, Card
-- PDF invoice generation with professional layout
-- Invoice history with search
+Admin and Staff roles
 
-#### 4. **Inventory Management**
-- Real-time stock tracking
-- Automatic stock deduction on sale
-- Stock purchase entries
-- Stock movement history
-- Low stock notifications
-- Inventory reports
+Password hashing with bcrypt
 
-#### 5. **Dashboard**
-- Sales summary (daily, monthly)
-- Revenue statistics
-- Low stock items display
-- Top-selling products chart
-- Profit analytics
-- Real-time inventory value
+User creation and management
 
-#### 6. **Reports & Analytics**
-- Daily/weekly/monthly sales reports
-- Profit analysis with visual charts
-- Product-wise sales breakdown
-- Customer purchase history
-- GST collection reports
-- Export reports to CSV
+Password change functionality
 
-#### 7. **Advanced Features**
-- User authentication (Admin/Staff roles)
-- Password protection with bcrypt hashing
-- Data backup and restore
-- Settings customization
-- Multi-user support
-- Profit calculation (cost vs selling price)
-- Loyalty points tracking (extensible)
-- Dark mode ready
+User/activity tracking
 
-#### 8. **Data Security**
-- Local-only storage (no cloud dependency)
-- Encrypted password storage
-- Data backup functionality
-- JSON-based storage for portability
-- No external database required
+📦 Product & Inventory Management
 
-## 📁 Project Structure
+Add, edit, delete, and search products
 
-```
-Agrement/
-├── app.py                      # Main entry point (GUI)
-├── main.py                     # Alternative CLI entry point
-├── requirements.txt            # Python dependencies
-├── README.md                   # This file
+Product categories
+
+Cost price and selling price
+
+Stock quantity tracking
+
+Expiry date support
+
+Automatic stock reduction after sales
+
+Purchase and stock adjustment entries
+
+Low-stock alerts
+
+Stock movement history
+
+🧾 Billing & Invoices
+
+Create customer invoices
+
+Add multiple products to a bill
+
+Item-wise discounts
+
+Invoice-level discounts
+
+Customizable GST calculation
+
+Payment modes:
+
+Cash
+
+UPI
+
+Card
+
+Automatic subtotal, discount, GST, and grand-total calculation
+
+Auto-generated invoice IDs
+
+PDF invoice generation
+
+Invoice history
+
+📊 Dashboard & Reports
+
+Today's sales
+
+Today's invoice count
+
+Monthly revenue
+
+Low-stock products
+
+Top-selling products
+
+Sales trends
+
+Profit analysis
+
+Product-wise sales analysis
+
+Daily, weekly, and monthly reports
+
+CSV export
+
+🏷️ Barcode & QR Code
+
+Automatic product barcode generation
+
+QR code generation
+
+Barcode image storage
+
+Barcode scanning support through the barcode utility
+
+👥 Customer Management
+
+Customer records
+
+Phone and email information
+
+Purchase history
+
+Total purchase tracking
+
+Loyalty-points foundation
+
+💾 Data Management
+
+Local SQLite database
+
+Automatic database initialization
+
+Backup and restore functionality
+
+CSV export
+
+No cloud database required
+
+🖥️ Desktop GUI
+
+Tkinter-based graphical interface
+
+Login screen
+
+Dashboard
+
+Product management
+
+Billing window
+
+Reports
+
+Settings
+
+Input validation and error messages
+
+🛠️ Tech Stack
+
+Technology
+
+Purpose
+
+Python
+
+Core programming language
+
+Tkinter
+
+Desktop GUI
+
+SQLite
+
+Local database
+
+bcrypt
+
+Password hashing
+
+Matplotlib
+
+Charts and analytics
+
+ReportLab
+
+PDF invoice generation
+
+python-barcode
+
+Barcode generation
+
+qrcode
+
+QR code generation
+
+Pillow
+
+Image processing
+
+OpenCV
+
+Image/camera processing
+
+pyzbar
+
+Barcode scanning
+
+CSV / Python Standard Library
+
+Data export and utilities
+
+🏗️ Project Structure
+
+Smart-Billing-System/
 │
-├── gui/                        # GUI Components
-│   ├── main_window.py         # Main application window
-│   ├── login_window.py        # Login interface
-│   ├── dashboard.py           # Dashboard with analytics
-│   ├── products.py            # Product management UI
-│   ├── billing.py             # Billing/Invoice creation
-│   ├── reports.py             # Reports and charts
-│   └── settings.py            # Settings and user management
+├── app.py                         # Main application entry point
+├── quick_start.py                 # Creates demo data
+├── test_installation.py           # Installation verification
+├── requirements.txt               # Python dependencies
 │
-├── models/                     # Data Models
-│   ├── models.py              # Product, Invoice, Customer, User dataclasses
-│   └── __init__.py
+├── gui/                           # User interface
+│   ├── main_window.py
+│   ├── login_window.py
+│   ├── dashboard.py
+│   ├── products.py
+│   ├── billing.py
+│   ├── reports.py
+│   └── settings.py
 │
-├── utils/                      # Utility Modules
-│   ├── storage.py             # JSON-based storage manager
-│   ├── auth.py                # Authentication and user management
-│   ├── billing.py             # Billing calculations
-│   ├── barcode.py             # Barcode generation/handling
-│   ├── pdf_generator.py       # PDF invoice generation
-│   └── __init__.py
+├── models/                        # Application data models
+│   └── models.py
 │
-├── data/                       # Data Storage (Auto-created)
-│   ├── products.json          # Products database
-│   ├── invoices.json          # Invoice index
-│   ├── customers.json         # Customer records
-│   ├── users.json             # User accounts
-│   ├── stock_movements.json   # Stock history
-│   └── backups/               # Backup files
+├── utils/                         # Business logic and utilities
+│   ├── storage.py                 # SQLite storage
+│   ├── auth.py                    # Authentication
+│   ├── billing.py                 # Billing calculations
+│   ├── barcode.py                 # Barcode / QR generation
+│   └── pdf_generator.py           # PDF invoice generation
 │
-├── barcodes/                   # Generated Barcode Images
-│   ├── barcode_*.png
-│   └── qr_*.png
+├── data/                          # Runtime application data
+│   └── pos_database.sqlite        # Local SQLite database
 │
-└── invoices/                   # Generated PDF Invoices
-    └── INV-*.pdf
+├── barcodes/                      # Generated barcode/QR images
+├── invoices/                      # Generated PDF invoices
+│
+├── FEATURES.md                    # Detailed feature documentation
+├── SETUP.md                       # Detailed setup guide
+├── PROJECT_SUMMARY.md             # Project summary
+├── Project_Presentation_Guide.md  # Presentation reference
+└── INDEX.md                       # File index
 
+data/, barcodes/, and invoices/ contain runtime/generated files and should normally not be committed to Git.
 
-**Note:** Barcode scanning uses your camera and requires the `opencv-python` and `pyzbar` packages from `requirements.txt`.```
+🚀 Installation
 
-## 🚀 Installation & Setup
+1. Clone the repository
 
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
+git clone https://github.com/VaradP07/Smart-Billing-System.git
+cd Smart-Billing-System
 
-### Step 1: Clone/Download the Project
-```bash
-cd Agrement
-```
+2. Create a virtual environment
 
-### Step 2: Install Dependencies
-```bash
+Windows:
+
+python -m venv venv
+venv\Scripts\activate
+
+macOS/Linux:
+
+python3 -m venv venv
+source venv/bin/activate
+
+3. Install dependencies
+
 pip install -r requirements.txt
-```
 
-### Step 3: Run the Application
-```bash
+4. Verify the installation
+
+python test_installation.py
+
+5. Start the application
+
 python app.py
-```
 
-Or for CLI version:
-```bash
-python main.py
-```
+🧪 Demo Data
 
-### First Time Setup
-- On first launch, a default admin account is created: `username: admin, password: admin123`
-- **Change this password immediately in Settings > Account > Change Password**
+For testing, the project includes a demo-data script:
 
-## 💻 Usage Guide
+python quick_start.py --demo
 
-### Login
-1. Start the application
-2. Enter credentials (default: admin/admin123)
-3. Click Login
+This creates sample users, products, and customers.
 
-### Dashboard
-- View today's sales
-- Monitor monthly revenue
-- Check low stock items
-- See top-selling products
-- View analytics charts
+Demo login
 
-### Product Management
-1. Click "Products" button
-2. Add new products with:
-   - Name, Category, Cost Price, Selling Price
-   - Stock quantity
-   - Auto-generated barcode
-3. Edit existing products
-4. Delete products (if not referenced in sales)
-5. Search products by name
+Username: admin
+Password: admin123
 
-### Create Invoice/Bill
-1. Click "Billing" button
-2. Enter customer name (optional)
-3. Add products:
-   - Select from dropdown
-   - Enter quantity
-   - Apply item-wise discount if needed
-4. Set invoice-wide discount (%)
-5. Select GST rate
-6. Choose payment mode
-7. Click "Finalize & Save" to record sale
-8. Click "Generate PDF" for invoice document
+Important: Change the default password after first login. Do not use the demo password for a real deployment.
 
-### View Reports
-1. Click "Reports" button
-2. Select date range
-3. View different report types:
-   - Sales Report (daily chart)
-   - Profit Analysis (profit trends)
-   - Product Sales (top selling items)
-   - Summary (totals and statistics)
-4. Export reports to CSV
+🧮 Billing Calculation
 
-### Settings
-1. Click "Settings" button
-2. **General**: Configure GST rate and low stock level
-3. **Account**: Change your password
-4. **User Management** (Admin only):
-   - Add new users
-   - Delete users
-   - Manage roles
-5. **Backup & Restore**:
-   - Create automatic backups
-   - Restore from previous backups
-   - Clear all data (use with caution)
+The application calculates invoice totals using the following flow:
 
-## 🔐 User Roles
+Item Total
+    ↓
+Item Discount
+    ↓
+Subtotal
+    ↓
+Invoice Discount
+    ↓
+Taxable Amount
+    ↓
+GST
+    ↓
+Grand Total
 
-### Admin
-- All permissions
-- Can manage users
-- Can access all reports
-- Can create backups
-- Can change settings
+Profit
 
-### Staff/Cashier
-- Can create invoices
-- Can view products
-- Can view their own reports
-- Cannot manage users
-- Cannot change settings
+Profit = (Selling Price - Cost Price) × Quantity
 
-## 📊 Data Storage
+Profit Margin
 
-All data is stored locally in JSON format:
-- **products.json**: Product catalog with pricing and stock
-- **invoices.json**: Invoice index and details
-- **customers.json**: Customer information and history
-- **users.json**: User accounts with encrypted passwords
-- **stock_movements.json**: Stock transaction history
+Profit Margin % =
+((Selling Price - Cost Price) / Selling Price) × 100
 
-### Backup & Restore
-- Automatic backup creation with timestamp
-- Store in `data/backups/` directory
-- One-click restore from any backup
-- Prevents accidental data loss
+🗄️ Database
 
-## 🛠️ Technical Stack
+The current implementation uses SQLite through utils/storage.py.
 
-| Component | Technology |
-|-----------|-----------|
-| UI Framework | Tkinter (Standard Python GUI) |
-| Data Storage | JSON files (Local) |
-| Authentication | bcrypt (Password hashing) |
-| Barcode Generation | python-barcode, qrcode |
-| PDF Generation | ReportLab |
-| Charts/Graphs | matplotlib |
-| Image Processing | OpenCV, Pillow |
+The database is automatically created at:
 
-## 📈 Key Metrics Tracked
+data/pos_database.sqlite
 
-- **Sales**: Daily, weekly, monthly revenue
-- **Profit**: Based on cost price vs selling price
-- **Inventory**: Stock levels, stock movements, low stock items
-- **Products**: Sales count, profit per product
-- **Customers**: Purchase history, total spent
-- **GST**: Collected GST amount and rate
+The application initializes tables for:
 
-## ⌨️ Keyboard Shortcuts
+Products
 
-| Action | Shortcut |
-|--------|----------|
-| Login | Enter (in password field) |
-| Add Item | Ctrl+N (in billing) |
-| Save Invoice | Ctrl+S (in billing) |
-| Generate PDF | Ctrl+P (in billing) |
+Invoices
 
-## 🐛 Troubleshooting
+Bill Items
 
-### Application won't start
-```bash
-# Check Python version
-python --version
+Customers
 
-# Reinstall dependencies
-pip install --upgrade -r requirements.txt
-```
+Users
 
-### Barcode generation fails
-- Ensure `barcodes/` directory exists
-- Check file write permissions
+Stock Movements
 
-### PDF generation issues
-- Ensure `invoices/` directory exists
-- Check free disk space
+No separate database server is required.
 
-### Data not saving
-- Check `data/` directory permissions
-- Ensure disk is not full
+🔒 Security
 
-## 📝 License
+The project includes:
 
-This project is provided as-is for retail billing purposes.
+bcrypt password hashing
 
-## 🤝 Contributing
+Role-based access
 
-Improvements welcome! Areas for expansion:
-- Multi-language support
-- Customer loyalty programs
-- Advanced analytics
-- Mobile app integration
-- Cloud sync (optional)
+Admin/Staff separation
 
-## 📞 Support
+Input validation
 
-For issues or questions:
-1. Check the data directory for error logs
-2. Verify all dependencies are installed
-3. Ensure JSON files in data/ are valid
-4. Clear data/backups and restore from backup if corrupted
+Local data storage
 
----
+Backup and restore functionality
 
-**Version**: 1.0.0  
-**Last Updated**: February 2026  
-**Status**: Production Ready ✅
+Important
+
+Do not commit:
+
+passwords
+
+.env files
+
+generated databases containing personal/customer data
+
+private backups
+
+generated invoices containing sensitive information
+
+📈 Reports
+
+The reporting module supports:
+
+Daily sales
+
+Weekly sales
+
+Monthly sales
+
+Revenue analysis
+
+Profit analysis
+
+GST summary
+
+Product sales
+
+Top-selling products
+
+Average invoice value
+
+CSV export
+
+Charts are generated using Matplotlib.
+
+🧪 Testing
+
+Run:
+
+python test_installation.py
+
+The test script checks the project environment and required components.
+
+For a clean test environment, create a new virtual environment before installing the dependencies.
+
+🖼️ Screenshots
+
+Add screenshots of the following screens to make the repository easier to understand:
+
+screenshots/
+├── login.png
+├── dashboard.png
+├── products.png
+├── billing.png
+├── reports.png
+└── settings.png
+
+Then reference them in this README, for example:
+
+![Dashboard](screenshots/dashboard.png)
+
+🔮 Future Enhancements
+
+Possible future improvements include:
+
+Cloud database support
+
+Multi-store / multi-location support
+
+Email receipts
+
+SMS notifications
+
+Advanced inventory forecasting
+
+Mobile application
+
+Cloud synchronization
+
+Multi-language support
+
+Custom themes
+
+Advanced analytics
+
+🎓 Project Information
+
+Project: Smart Billing System
+Type: Desktop Retail Billing & Inventory Management System
+Language: Python
+GUI: Tkinter
+Database: SQLite
+Version: 1.0.0
+
+👨‍💻 Author
+
+Varad Patil
+
+GitHub: VaradP07
+
+📄 License
+
+This project is intended for educational and project-development purposes.
+
+If you plan to distribute or deploy it commercially, add an appropriate open-source or proprietary license.
